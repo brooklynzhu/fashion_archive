@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">Menu</div>
+    <div class="col-xs-8">
+      <div class="row">
+        <div class="col-md-4 col-md-push-8">Right Content</div>
+        <div class="col-md-8 col-md-pull-8">
+        	<ul>
+			<li><%@pieces.each do |show|%>
+			<img src= <%=show.photo%> height = 100>
+			<%=link_to show.designer, show%>
+			<%end%></li>
+
+			</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

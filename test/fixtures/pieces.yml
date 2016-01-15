@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  designer: MyString
+  description: MyString
+  size: 1
+  color: MyString
+  pattern: MyString
+  material: MyString
+  category: MyString
+  sub_category: MyString
+  location: MyString
+  condition: MyString
+  client_id: 
+
+two:
+  designer: MyString
+  description: MyString
+  size: 1
+  color: MyString
+  pattern: MyString
+  material: MyString
+  category: MyString
+  sub_category: MyString
+  location: MyString
+  condition: MyString
+  client_id: 

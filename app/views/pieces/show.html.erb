@@ -1,0 +1,13 @@
+<img src=<%=@piece.photo%> height = 300>
+
+<p> Designer: <%=@piece.designer%></p>
+<p> Description: <%=@piece.description%></p>
+<p> Category: <%=@piece.category%></p>
+<p> Sub-Category: <%=@piece.sub_category%></p>
+<p> Size: <%=@piece.size%></p>
+<p> Color: <%=@piece.color%></p>
+<p> Material: <%=@piece.material%></p>
+<p> Condition: <%=@piece.condition%></p>
+<p> Location: <%=@piece.location%></p>
+
+<p><%=link_to "Edit", edit_piece_path(@piece)%> | <%= link_to "Delete", @piece, method: :delete, data:{confirm: "Are you sure?"} %></p>

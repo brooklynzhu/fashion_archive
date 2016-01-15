@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+   <h1> <div class="col-xs-4"><%=@client.name%></div></h1>
+    <div class="col-xs-8">
+      <div class="row">
+        <div class="col-md-4 col-md-push-8">
+        	Total Piece Count: <%=link_to @pieces, client_pieces_path(@client)%>
+
+        </div>
+        <div class="col-md-8 col-md-pull-4">Content</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p><img src = <%=@client.photo%> height=300></p>
+
+
+<p><%=link_to "Edit Profile", edit_client_path(@client)%></p>
+
+<p><%=link_to "Add New Piece", new_client_piece_path(@client)%></p>
+<p><%=link_to "View All Pieces", client_pieces_path(@client)%></p>
+

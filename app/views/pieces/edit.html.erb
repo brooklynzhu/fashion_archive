@@ -1,0 +1,17 @@
+<h1> Edit Piece! </h1>
+<%=form_for [@client, @piece] do |p|%>
+	<p>PHOTO: <%=p.text_field :photo%></p>
+	<p>DESIGNER: <%=p.text_field :designer%></p>
+	<p>DESCRIPTION: <%=p.text_area :description%></p>
+	<p>SIZE: <%=p.text_field :size%></p>
+	<p>COLOR: <%=p.text_field :color%></p>
+	<p>PATTERN: <%=p.text_field :pattern%></p>
+	<p>MATERIAL: <%=p.text_field :material%></p>
+	<p>CATEGORY: <%=p.collection_select :category, Piece::CATEGORIES, :to_s, :humanize%></p>
+	<p>SUB CATEGORY: <%=p.text_field :sub_category%></p>
+	<p>LOCATION: <%=p.collection_select :location, Piece::LOCATIONS, :to_s, :humanize%></p>
+	<p>CONDITION: <%=p.collection_select :condition, Piece::CONDITIONS, :to_s, :humanize%></p>
+
+<p><%=p.submit%></p>
+
+<%end%>
