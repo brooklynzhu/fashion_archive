@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115014642) do
+ActiveRecord::Schema.define(version: 20160116223353) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160115014642) do
     t.integer  "collection_manager_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.string   "address"
   end
 
   add_index "clients", ["collection_manager_id"], name: "index_clients_on_collection_manager_id"
@@ -65,6 +66,27 @@ ActiveRecord::Schema.define(version: 20160115014642) do
 
   add_index "collection_managers", ["email"], name: "index_collection_managers_on_email", unique: true
   add_index "collection_managers", ["reset_password_token"], name: "index_collection_managers_on_reset_password_token", unique: true
+
+  create_table "deliveries", force: :cascade do |t|
+    t.string   "date"
+    t.string   "notes"
+    t.integer  "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "deliveries", ["client_id"], name: "index_deliveries_on_client_id"
+
+  create_table "pickups", force: :cascade do |t|
+    t.string   "date"
+    t.string   "notes"
+    t.integer  "client_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "piececount"
+  end
+
+  add_index "pickups", ["client_id"], name: "index_pickups_on_client_id"
 
   create_table "pieces", force: :cascade do |t|
     t.string   "designer"

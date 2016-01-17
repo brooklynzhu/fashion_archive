@@ -1,11 +1,9 @@
 class ClientsController < ApplicationController
 	
 	def index
-
 		@collection_manager = current_collection_manager	
 		@clients = Client.all
 		
-
 	end
 
 	def new
@@ -27,9 +25,33 @@ class ClientsController < ApplicationController
 
 	end
 
+	def edit
+		@client = Client.find(params[:id])
+
+	end
+
+	def update
+		@client = Client.find(params[:id])
+		
+		if @client.update(safe_client_params)
+			flash[:notice] = "Client Updated!"
+			redirect_to client_path(@client)
+		else
+			render edit_client_path
+		end
+
+	end
+
 	def show
 		@client = Client.find(params[:id])
 		@pieces = @client.pieces.count
+
+	end
+
+	def profile
+
+		@client = Client.find(params[:client_id])
+
 
 	end
 

@@ -2,8 +2,8 @@ class DashboardController < ApplicationController
 	skip_before_action :authenticate_user!
 	
 	def index
-		@clients = Client.all
-		
+		@pickups = Pickup.all
+				
 	end
 
 end

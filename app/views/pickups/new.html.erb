@@ -1,0 +1,14 @@
+<h1> Create Pickup </h1>
+
+<%=form_for (@pickup) do |p|%>
+	<p>Date: <%=select_date Date.today, prefix: :date%></p>
+
+	<p>Select Client: <%=p.collection_select(:client_id, Client.all, :id, :name)%>
+
+	<p>Piece Count: <%=p.text_field :piececount%>
+	<p>Notes: <%=p.text_area :notes%>
+	
+
+	<p><%=p.submit%></p>
+
+<%end%>

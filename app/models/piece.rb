@@ -1,5 +1,8 @@
 class Piece < ActiveRecord::Base
   belongs_to :client
+  belongs_to :pickup
+  belongs_to :delivery
+  
   CATEGORIES = %w[Garments Bags Shoes Accessories]
   LOCATIONS = ["On Site", "At Client"]
   CONDITIONS = %w[New Good Fair Poor]

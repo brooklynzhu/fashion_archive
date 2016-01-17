@@ -1,6 +1,6 @@
-<h1> Create new client</h1>
+<h1>Edit <%=@client.name%>'s Profile</h1>
 
-<%=form_for [current_collection_manager, @client] do |c|%>
+<%=form_for @client do |c|%>
 	<p>NAME: <%=c.text_field :name%></p>
 	<p>ADDRESS: <%=c.text_area :address%></p>
 	<p>E-MAIL: <%=c.text_field :email%></p>

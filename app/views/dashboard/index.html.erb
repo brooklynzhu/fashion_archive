@@ -1,4 +1,21 @@
 <h1>The Fashion Archive Dashboard </h1>
 
+<h3>Pickups</h3>
+<%=link_to "Create New Pickup", new_pickup_path%>
+
+	<%@pickups.each do |p|%>
+	<ul><li><%=link_to p.id, p%></li></ul>
+	
+<%end%>
+
+
+
+
+
+
+
+<h3>Deliveries</h3>
+
+
 
 

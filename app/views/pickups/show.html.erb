@@ -1,0 +1,10 @@
+<h1> Pickup <%=@pickup.id%> for <%=@client%></h1>
+<p><%=link_to "Check In Pieces", pickup_check_in_pieces_path(@pickup)%></p>
+
+<p><%=link_to "Create New Pieces", new_pickup_piece_path(@pickup, @client)%>
+
+
+<h2> Pieces </h2>
+
+
+

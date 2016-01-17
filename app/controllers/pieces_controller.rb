@@ -8,6 +8,7 @@ class PiecesController < ApplicationController
 
 	def show
 		@piece = Piece.find(params[:id])
+		
 	end
 
 	def new
@@ -21,7 +22,7 @@ class PiecesController < ApplicationController
 		@piece = @client.pieces.create(safe_piece_params)
 		if @piece.save
 			flash[:notice] = "Piece has been added to #{@client.name}'s closet!"
-			redirect_to collection_manager_clients_path(current_collection_manager)
+			redirect_to piece_path(@piece)
 		else
 			flash[:notice] = "Error"
 			render :new
