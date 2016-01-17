@@ -1,6 +1,7 @@
 <h1> Add new piece to <%=@client.name%>'s closet! </h1>
 
 <%=form_for [@client, @piece] do |p|%>
+	<%= p.hidden_field :pickup_id, :value => @pickup_id %>
 	<p>PHOTO: <%=p.file_field :photo%></p>		  
 	<p>DESIGNER: <%=p.text_field :designer%></p>
 	<p>DESCRIPTION: <%=p.text_area :description%></p>

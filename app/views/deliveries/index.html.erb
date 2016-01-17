@@ -1,0 +1,10 @@
+<h2>Deliveries for <%=@client.name%></h2>
+
+<% @deliveries.each do |d|%>
+
+	<ul><li><p><%=d.date.strftime("%m/%d/%Y")%></p>
+	<p><%=d.piececount%></p></li></ul>
+
+<%=end%>
+
+	

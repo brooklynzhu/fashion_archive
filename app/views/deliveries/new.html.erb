@@ -1,0 +1,12 @@
+<h1> Delivery for <%=@client.name%></h1>
+
+<%= form_for [@client, @delivery] do |d|%>
+	<p>Date: <%= d.date_select :date %></p>
+
+	<p>Piece Count: <%= d.text_field :piececount %>
+	<p>Notes: <%= d.text_area :notes %>
+	
+
+	<p><%= d.submit %></p>
+
+<%end%>

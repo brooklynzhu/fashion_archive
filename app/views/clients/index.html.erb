@@ -1,4 +1,5 @@
 <h2>View All Clients</h2>
+<%=link_to "Add New Client", new_collection_manager_client_path(current_collection_manager)%>
 <ul>
 <p><%@clients.each do |view|%>
 	<li><%=link_to view.name, view%></p></li>
@@ -8,4 +9,3 @@
 
 
 
-<%=link_to "Add New Client", new_collection_manager_client_path(current_collection_manager)%>

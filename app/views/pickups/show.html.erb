@@ -1,7 +1,8 @@
-<h1> Pickup <%=@pickup.id%> for <%=@client%></h1>
+<h1> Pickup <%=@pickup.id%> on <%=@pickup.date.strftime("%m/%d/%Y") %> for <%=@client_name%></h1>
 <p><%=link_to "Check In Pieces", pickup_check_in_pieces_path(@pickup)%></p>
 
-<p><%=link_to "Create New Pieces", new_pickup_piece_path(@pickup, @client)%>
+
+<p><%=link_to "Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %>
 
 
 <h2> Pieces </h2>

@@ -8,18 +8,21 @@ class PiecesController < ApplicationController
 
 	def show
 		@piece = Piece.find(params[:id])
-		
+				
 	end
 
 	def new
 		@client = Client.find(params[:client_id])
 		@piece = @client.pieces.new
+		@pickup_id = params[:pickup_id]
 
 	end
 
 	def create
+
 		@client = Client.find(params[:client_id])
 		@piece = @client.pieces.create(safe_piece_params)
+
 		if @piece.save
 			flash[:notice] = "Piece has been added to #{@client.name}'s closet!"
 			redirect_to piece_path(@piece)
@@ -27,7 +30,6 @@ class PiecesController < ApplicationController
 			flash[:notice] = "Error"
 			render :new
 		end
-
 	end
 
 	def edit
@@ -58,7 +60,7 @@ class PiecesController < ApplicationController
 	private
 
 	def safe_piece_params
-		params.require(:piece).permit(:designer, :description, :size, :color, :pattern, :material, :category, :sub_category, :location, :condition, :photo)
+		params.require(:piece).permit(:designer, :description, :size, :color, :pattern, :material, :category, :sub_category, :location, :condition, :photo, :pickup_id, :delivery_id)
 	end
 
 

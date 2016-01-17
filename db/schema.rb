@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160116223353) do
+ActiveRecord::Schema.define(version: 20160117183920) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -68,17 +68,18 @@ ActiveRecord::Schema.define(version: 20160116223353) do
   add_index "collection_managers", ["reset_password_token"], name: "index_collection_managers_on_reset_password_token", unique: true
 
   create_table "deliveries", force: :cascade do |t|
-    t.string   "date"
+    t.datetime "date"
     t.string   "notes"
     t.integer  "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "piececount"
   end
 
   add_index "deliveries", ["client_id"], name: "index_deliveries_on_client_id"
 
   create_table "pickups", force: :cascade do |t|
-    t.string   "date"
+    t.datetime "date"
     t.string   "notes"
     t.integer  "client_id"
     t.datetime "created_at", null: false
@@ -107,8 +108,12 @@ ActiveRecord::Schema.define(version: 20160116223353) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "pickup_id"
+    t.integer  "delivery_id"
   end
 
   add_index "pieces", ["client_id"], name: "index_pieces_on_client_id"
+  add_index "pieces", ["delivery_id"], name: "index_pieces_on_delivery_id"
+  add_index "pieces", ["pickup_id"], name: "index_pieces_on_pickup_id"
 
 end

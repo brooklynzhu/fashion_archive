@@ -2,7 +2,10 @@
 
 
   <%@pieces.each do |show|%>
-  <ul><li><%=link_to show.id, show%> | <img src= <%=show.photo%> height = 100> | <%=show.designer%></li></ul>
+	<ul class="all-pieces-grid">
+  		<li><img src= <%=show.photo%>> Piece Number: <%=link_to show.id, show%></br> <%=show.designer%>
+		</li>
+	</ul>
   
   <%end%>
 

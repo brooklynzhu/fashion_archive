@@ -7,19 +7,22 @@ class PickupsController < ApplicationController
 
 	def show
 		@pickup = Pickup.find(params[:id])
-		@client = @pickup.client.name
+		@client_name = @pickup.client.name
+		@client_id = @pickup.client_id
+
 
 	end
 
 
 	def new
-		
-		@pickup = Pickup.new
+		@client = Client.find(params[:client_id])
+		@pickup = @client.pickups.new
 
 	end
 
 	def create
-		@pickup = Pickup.create(safe_pickup_params)
+		@client = Client.find(params[:client_id])
+		@pickup = @client.pickups.create(safe_pickup_params)
 		if @pickup.save
 			flash[:notice] = "Pickup created!"
 			redirect_to pickup_path(@pickup)
@@ -29,13 +32,23 @@ class PickupsController < ApplicationController
 		end
 	end
 
+	def check_in
+		
+
+
+	end
+
+	def complete_check_in
+
+	end
+
 
 
 	private
 
 	def safe_pickup_params
 
-		params.require(:pickup).permit(:date, :notes, :client_id)
+		params.require(:pickup).permit(:date, :notes, :client_id, :piececount)
 
 	end
 
