@@ -1,8 +1,6 @@
 <h1>The Fashion Archive Dashboard </h1>
 
 <h3>Pickups</h3>
-
-
 	<%@pickups.each do |p|%>
 	<ul><li><%=link_to p.date.strftime("%m/%d/%Y"), p%> | <%=p.client.name%> | Pick Up # <%=p.id%> | Piece Count: <%=p.piececount%></li></ul> 
 	
@@ -10,11 +8,13 @@
 
 
 
-
-
-
-
 <h3>Deliveries</h3>
+	<%@deliveries.each do |d|%>
+	<ul><li><%=link_to d.date.strftime("%m/%d/%Y"), d %> | <%=d.client.name%> | Delivery # <%=d.id%> | Piece Count: <%=d.piececount%></li></ul>
+
+<%end%>
+
+
 
 
 

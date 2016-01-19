@@ -1,11 +1,31 @@
 <h1> Pickup <%=@pickup.id%> on <%=@pickup.date.strftime("%m/%d/%Y") %> for <%=@client_name%></h1>
-<p><%=link_to "Check In Pieces", pickup_check_in_pieces_path(@pickup)%></p>
 
 
-<p><%=link_to "Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %>
+
+<p><%=link_to "Edit Pickup", edit_pickup_path(@pickup)%>
+
+<h3><%=link_to "+ Check In Pieces", pickup_check_in_pieces_path(@pickup, :client_id => @pickup.client.id)%></h3>
 
 
-<h2> Pieces </h2>
+<h3><%=link_to "+ Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %> </h3>
+
+
+<h2> Pieces from Pickup </h2>
+<p>Total Pieces in Pickup: <%= @pickup.piececount %></p>
+<p>Pieces Associated with Pickup: <%= @pickup.pieces.count %> </p>
+
+<%@pickup.pieces.each do |p|%>
+
+	<ul class="all-pieces-grid">
+	<%= link_to image_tag(p.photo), p %>
+	Item #:<%= p.id %>
+	Designer: <%= p.designer %>
+	Description: <%= p.description %>
+	</ul>
+
+<%end%>
+
+
 
 
 

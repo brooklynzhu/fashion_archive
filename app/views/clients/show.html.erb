@@ -1,23 +1,24 @@
-<div class="container">
-  <div class="row">
-   <h1> <div class="col-xs-4"><%=@client.name%></div></h1>
-    <div class="col-xs-8">
-      <div class="row">
-        <div class="col-md-4 col-md-push-8">
-        	
-          <p>Total Piece Count: <%=link_to @pieces, client_pieces_path(@client)%></p>
-          <p><%=link_to "New Pickup", new_client_pickup_path(@client)%></p>
-          <p><%=link_to "New Delivery Request", new_client_delivery_path(@client)%></p>
-          <p><%=link_to "View Profile", client_profile_path(@client)%></p>
+<h1> <%=@client.name%></h1>
+<p>Total Piece Count: <%= @piece_count %>
 
-          <p><%=link_to "Add New Piece", new_client_piece_path(@client)%></p>
-          <p><%=link_to "View All Pieces", client_pieces_path(@client)%></p>
-       </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
+<h3> Pieces On Site </h3>
+    <%@pieces_on_site.each do |show|%>
+    <ul class="all-pieces-grid">
+      <li><%= link_to image_tag(show.photo), show %>
+      <%=show.designer%>
+      <%=show.id%></li>
+    </ul>
+  <%end%>
+    
+
+
+<p>Pieces at Client: <%= @pieces_at_client %></p>
+<p><%=link_to "New Pickup", new_client_pickup_path(@client)%></p>
+<p><%=link_to "New Delivery Request", new_client_delivery_path(@client)%></p>
+<p><%=link_to "View Profile", client_profile_path(@client)%></p>
+
+<p><%=link_to "Add New Piece", new_client_piece_path(@client)%></p>
+<p><%=link_to "View All Pieces", client_pieces_path(@client)%></p>
 
 
 

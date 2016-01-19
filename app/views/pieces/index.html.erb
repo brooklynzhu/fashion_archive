@@ -1,9 +1,9 @@
-<h2><%=@client.name%>'s Closet</h2>
+<h2><%=@client.name%>'s Archive</h2>
 
 
   <%@pieces.each do |show|%>
 	<ul class="all-pieces-grid">
-  		<li><img src= <%=show.photo%>> Piece Number: <%=link_to show.id, show%></br> <%=show.designer%>
+  		<li><img src= <%=show.photo%>> Piece Number: <%=link_to show.id, show%></br> <%=show.designer%> <br><%=show.location%></br>
 		</li>
 	</ul>
   

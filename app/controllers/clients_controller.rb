@@ -1,7 +1,7 @@
 class ClientsController < ApplicationController
 	
 	def index
-		@collection_manager = current_collection_manager	
+		@collection_manager = current_collection_manager
 		@clients = Client.all
 		
 	end
@@ -44,14 +44,15 @@ class ClientsController < ApplicationController
 
 	def show
 		@client = Client.find(params[:id])
-		@pieces = @client.pieces.count
+		@piece_count = @client.pieces.count
+		@pieces_on_site = @client.pieces.where(location: 'On Site')
+		@pieces_at_client = @client.pieces.where(location: 'At Client').count
 
 	end
 
 	def profile
 
 		@client = Client.find(params[:client_id])
-
 
 	end
 

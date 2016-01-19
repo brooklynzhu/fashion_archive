@@ -9,6 +9,8 @@ class PickupsController < ApplicationController
 		@pickup = Pickup.find(params[:id])
 		@client_name = @pickup.client.name
 		@client_id = @pickup.client_id
+		@client = @pickup.client_id
+		
 
 
 	end
@@ -32,13 +34,32 @@ class PickupsController < ApplicationController
 		end
 	end
 
-	def check_in
+	def edit
+		@pickup = Pickup.find(params[:id])
+		@client = @pickup.client
+	end
+
+	def update
+		@pickup = Pickup.find(params[:id])
+		if @pickup.update(safe_pickup_params)
+			flash[:notice] = "Pickup Updated!"
+			redirect_to pickup_path(@pickup)
+		else
+			render edit_pickup_path
+		end
+	end
+
+	def check_in	
+		@client = Client.find(params[:client_id])
+		@pieces = @client.pieces.where(location: 'At Client')
 		
-
-
 	end
 
 	def complete_check_in
+		@pickup = Pickup.find(params[:pickup_id])
+		@client = @pickup.client_id
+		Piece.where(id: params[:piece_ids]).update_all(location: "On Site", pickup_id: @pickup)
+		redirect_to pickup_path(@pickup)
 
 	end
 

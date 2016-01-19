@@ -11,6 +11,7 @@ class DeliveriesController < ApplicationController
 		@delivery = Delivery.find(params[:id])
 		@client_name = @delivery.client.name
 		@client_id = @delivery.client_id
+		@pieces = @delivery.pieces
 
 	end
 
@@ -32,18 +33,44 @@ class DeliveriesController < ApplicationController
 		end
 	end
 
+	def edit
+		@delivery = Delivery.find(params[:id])
+		@client = @delivery.client
+
+	end
+
+	def update
+		@delivery = Delivery.find(params[:id])
+		if @delivery.update(safe_delivery_params)
+			flash[:notice] = "Delivery updated!"
+			redirect_to delivery_path(@delivery)
+		else
+			render edit_delivery_path
+		end
+	end
+
+
 	def check_out
-
-
+		@client_id = params[:client_id]
+		@client = Client.find(@client_id)
+		@pieces = @client.pieces.where(location: 'On Site')
 	end
 
 	def complete_check_out
+		@delivery = Delivery.find(params[:delivery_id])
+		@client = @delivery.client_id
+		Piece.where(id: params[:piece_ids]).update_all(location: "At Client", delivery_id: @delivery)
+		redirect_to delivery_path(@delivery)
 
 	end
 
-private
+	def destroy
+		@delivery = Delivery.find(params[:id]).destroy
+		@client = @delivery.client
+		redirect_to client_path(@client)
+	end
 
-private
+	private
 
 	def safe_delivery_params
 

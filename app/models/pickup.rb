@@ -1,5 +1,5 @@
 class Pickup < ActiveRecord::Base
   belongs_to :client
-  has_many :pieces, through: :clients
+  has_many :pieces
 
 end

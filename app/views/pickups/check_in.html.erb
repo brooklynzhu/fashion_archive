@@ -1,0 +1,17 @@
+<h2>Check in Pieces for <%=@client.name%></h2>
+
+
+<h3>Pieces Currently At Client</h3>
+
+<%= form_tag pickup_complete_check_in_path, method: :put do %>
+<%@pieces.each do |p|%>
+<ul class="all-pieces-grid">
+	
+	<img src= <%=p.photo%>>
+	<%= link_to p.id, p %>
+	<p><%= p.designer %></p>
+	<%= check_box_tag "piece_ids[]", p.id %>
+</ul>
+	<%end%>
+<p><%= submit_tag "Check In Pieces" %></p>
+<%end%>

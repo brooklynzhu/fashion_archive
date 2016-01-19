@@ -1,2 +1,24 @@
 <h1>Delivery #<%=@delivery.id%> on <%=@delivery.date.strftime("%m/%d/%Y") %> for <%=@client_name%></h1>
 
+
+
+
+<p><%=link_to "Edit", edit_delivery_path(@delivery)%>
+<p><%=link_to "Delete", @delivery, method: :delete, data: {confirm: "Are you sure?"} %> </p>
+
+<h4><%=link_to "Check Out Pieces", delivery_check_out_pieces_path(@delivery, :client_id => @delivery.client.id)%></h4>
+
+<h3> Pieces in Delivery </h3>
+
+<% @pieces.each do |show| %>
+	<ul class="all-pieces-grid">
+	<%= link_to image_tag(show.photo), show %>
+	<p><%= show.id %></p>
+	<p><%= show.designer %></p>
+	</ul>
+
+<%end%>
+
+
+
+

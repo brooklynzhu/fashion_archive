@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160117183920) do
+ActiveRecord::Schema.define(version: 20160118235151) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160117183920) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "piececount"
+    t.boolean  "completed"
   end
 
   add_index "deliveries", ["client_id"], name: "index_deliveries_on_client_id"
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(version: 20160117183920) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "piececount"
+    t.boolean  "completed"
   end
 
   add_index "pickups", ["client_id"], name: "index_pickups_on_client_id"

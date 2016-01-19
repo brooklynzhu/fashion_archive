@@ -1,0 +1,12 @@
+<h1> Edit Pickup </h1>
+
+<%= form_for [@pickup] do |p|%>
+	<p>Date: <%= p.date_select :date %></p>
+
+	<p>Piece Count: <%= p.text_field :piececount %>
+	<p>Notes: <%= p.text_area :notes %>
+	
+
+	<p><%= p.submit %></p>
+
+<%end%>

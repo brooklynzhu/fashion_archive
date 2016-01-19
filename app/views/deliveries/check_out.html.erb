@@ -1,0 +1,15 @@
+<h1>Select Pieces in <%=@client.name%>'s Archive to Check out</h1>
+
+<h3>Pieces On Site </h3>
+
+<%= form_tag delivery_complete_check_out_path, method: :put do %>
+
+	<%@pieces.each do |show|%>
+	<ul class="all-pieces-grid">
+		<img src = <%=show.photo%>>
+		<br><%=show.designer%></br>
+		Check Out Piece: <%= check_box_tag "piece_ids[]", show.id %>
+	</ul>
+	<%end%>
+<p><%= submit_tag "Check Out Pieces" %> </p>
+<%end%>
