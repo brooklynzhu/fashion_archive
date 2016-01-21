@@ -70,6 +70,17 @@ class DeliveriesController < ApplicationController
 		redirect_to client_path(@client)
 	end
 
+	def completed
+		@delivery = Delivery.find(params[:delivery_id])
+		if @delivery.completed != true
+			@delivery.update(completed: true)
+			redirect_to delivery_path(@delivery)
+		else
+			@delivery.update(completed: false)
+			redirect_to delivery_path(@delivery)
+		end
+	end
+
 	private
 
 	def safe_delivery_params

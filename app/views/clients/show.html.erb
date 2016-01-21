@@ -1,5 +1,13 @@
+
+<div class="col-md-2">
+
+<%= render "client_menu" %>
+
+</div>
+
+<div class="col-md-10">
 <h1> <%=@client.name%></h1>
-<p>Total Piece Count: <%= @piece_count %>
+<p>Total Piece Count: <%= @piece_count %></p>
 
 <h3> Pieces On Site </h3>
     <%@pieces_on_site.each do |show|%>
@@ -9,17 +17,4 @@
       <%=show.id%></li>
     </ul>
   <%end%>
-    
-
-
-<p>Pieces at Client: <%= @pieces_at_client %></p>
-<p><%=link_to "New Pickup", new_client_pickup_path(@client)%></p>
-<p><%=link_to "New Delivery Request", new_client_delivery_path(@client)%></p>
-<p><%=link_to "View Profile", client_profile_path(@client)%></p>
-
-<p><%=link_to "Add New Piece", new_client_piece_path(@client)%></p>
-<p><%=link_to "View All Pieces", client_pieces_path(@client)%></p>
-
-
-
-
+</div>

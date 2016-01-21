@@ -1,0 +1,23 @@
+
+
+<div class="col-md-10">
+
+<h2> Completed Pickups </h2>
+
+	<ul><% @pickups.each do |p| %>
+		<ul><li><%=link_to p.date.strftime("%m/%d/%Y"), p%> | <%=p.client.name%> | Pick Up # <%=p.id%> | Piece Count: <%=p.piececount%></li></ul>
+	<%end%>
+	</ul>
+
+<h2> Completed Deliveries </h2>
+
+	<ul><% @deliveries.each do |show| %>
+			<ul><li><%=link_to show.date.strftime("%m/%d/%Y"), show %> | <%=show.client.name%> | Delivery # <%=show.id%> | Piece Count: <%=show.piececount%></li></ul>
+		<%end%>
+	</ul>
+
+
+
+</div>
+
+

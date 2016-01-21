@@ -17,5 +17,7 @@ class Piece < ActiveRecord::Base
 
   # Validate the attached image is image/jpg, image/png, etc
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+  validates :photo, :designer, :description, :size, :color, :pattern, :material, :category, :sub_category, :location, :condition, presence: true
+
 
 end

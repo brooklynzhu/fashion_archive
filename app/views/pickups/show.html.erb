@@ -1,29 +1,45 @@
 <h1> Pickup <%=@pickup.id%> on <%=@pickup.date.strftime("%m/%d/%Y") %> for <%=@client_name%></h1>
 
+<% if @pickup.completed? %>
+	<h2>Status: Completed!</h2>
+	<p> Date Completed: <%=@pickup.updated_at%></p>
+<% else %>
+	<h2>Status: Pending</h2>
+<% end %>
+ 
+<div class="col-md-2">
 
+	<p><%=link_to "Edit Pickup", edit_pickup_path(@pickup)%>
 
-<p><%=link_to "Edit Pickup", edit_pickup_path(@pickup)%>
+	<p><%=link_to "+ Check In Pieces", pickup_check_in_pieces_path(@pickup, :client_id => @pickup.client.id)%></p>
 
-<h3><%=link_to "+ Check In Pieces", pickup_check_in_pieces_path(@pickup, :client_id => @pickup.client.id)%></h3>
+	<p><%=link_to "+ Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %> </p>
+	<p> Total Pieces in Pickup: <%= @pickup.piececount %> </p>
+	<p> Pieces Associated with Pickup: <%= @pickup.pieces.count %> </p>
+	
+	<% if @pickup.completed != true %>	
+		<%=button_to "Complete Pickup", completed_client_pickups_path(@pickup.client_id, :pickup_id => @pickup.id), method: "put", data: { confirm: "Are you sure?"} %>
+	<%else%>
+		<%=button_to "Unmark as Complete", completed_client_pickups_path(@pickup.client_id, :pickup_id => @pickup.id), method: "put", data: { confirm: "Are you sure you want to unmark Pickup # #{@pickup.id} as complete?"}%>
 
+	<% end %>
+</div>
 
-<h3><%=link_to "+ Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %> </h3>
+<div class="col-md-10">
 
+	<h2>Pieces from Pickup </h2>
 
-<h2> Pieces from Pickup </h2>
-<p>Total Pieces in Pickup: <%= @pickup.piececount %></p>
-<p>Pieces Associated with Pickup: <%= @pickup.pieces.count %> </p>
+	<%@pickup.pieces.each do |p|%>
+		<ul class="all-pieces-grid">
+		<%= link_to image_tag(p.photo), p %>
+		Item #:<%= p.id %>
+		Designer: <%= p.designer %>
+		Description: <%= p.description %>
+		</ul>
+	<%end%>
 
-<%@pickup.pieces.each do |p|%>
+</div>
 
-	<ul class="all-pieces-grid">
-	<%= link_to image_tag(p.photo), p %>
-	Item #:<%= p.id %>
-	Designer: <%= p.designer %>
-	Description: <%= p.description %>
-	</ul>
-
-<%end%>
 
 
 

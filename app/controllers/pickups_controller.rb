@@ -9,9 +9,6 @@ class PickupsController < ApplicationController
 		@pickup = Pickup.find(params[:id])
 		@client_name = @pickup.client.name
 		@client_id = @pickup.client_id
-		@client = @pickup.client_id
-		
-
 
 	end
 
@@ -61,6 +58,17 @@ class PickupsController < ApplicationController
 		Piece.where(id: params[:piece_ids]).update_all(location: "On Site", pickup_id: @pickup)
 		redirect_to pickup_path(@pickup)
 
+	end
+
+	def completed
+		@pickup = Pickup.find(params[:pickup_id])
+		if @pickup.completed != true
+			@pickup.update(completed: true)
+			redirect_to pickup_path(@pickup)
+		else
+			@pickup.update(completed: false)
+			redirect_to pickup_path@pickup
+		end
 	end
 
 
