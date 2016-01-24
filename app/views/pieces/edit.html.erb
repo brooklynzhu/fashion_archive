@@ -1,6 +1,6 @@
 <h1> Edit Piece! </h1>
 <%=form_for [@client, @piece] do |p|%>
-	<p>PHOTO: <%=p.text_field :photo%></p>
+	<p>PHOTO: <%=p.file_field :photo%></p>
 	<p>DESIGNER: <%=p.text_field :designer%></p>
 	<p>DESCRIPTION: <%=p.text_area :description%></p>
 	<p>SIZE: <%=p.text_field :size%></p>

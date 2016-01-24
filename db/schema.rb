@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160123164321) do
+ActiveRecord::Schema.define(version: 20160124200632) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 20160123164321) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.string   "photo"
   end
 
   add_index "clients", ["collection_manager_id"], name: "index_clients_on_collection_manager_id"

@@ -39,11 +39,16 @@ class ClientsController < ApplicationController
 		
 		if @client.update(safe_client_params)
 			flash[:notice] = "Client Updated!"
-			redirect_to client_path(@client)
+			redirect_to client_profile_path(@client)
 		else
 			render edit_client_path
 		end
 
+	end
+
+	def destroy
+		@client = Client.find(params[:id]).destroy
+		redirect_to collection_manager_clients_path(current_collection_manager)
 	end
 
 	def show
