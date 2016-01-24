@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160118235151) do
+ActiveRecord::Schema.define(version: 20160123164321) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -39,11 +39,14 @@ ActiveRecord::Schema.define(version: 20160118235151) do
     t.string   "email_assist"
     t.string   "cell_phone"
     t.string   "delivery_pref"
-    t.string   "photo"
     t.integer  "collection_manager_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
     t.string   "address"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "clients", ["collection_manager_id"], name: "index_clients_on_collection_manager_id"

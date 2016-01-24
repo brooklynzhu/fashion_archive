@@ -1,15 +1,15 @@
-<h1> Create new client</h1>
+<h1> Create New Client</h1>
 
-<%=form_for [current_collection_manager, @client] do |c|%>
-	<p>NAME: <%=c.text_field :name%></p>
-	<p>ADDRESS: <%=c.text_area :address%></p>
-	<p>E-MAIL: <%=c.text_field :email%></p>
-	<p>ASSISTANT'S EMAIL: <%=c.text_field :email_assist%></p>
-	<p>BIRTHDAY: <%=c.text_field :birthday%></p>
-	<p>CELL PHONE: <%=c.text_field :cell_phone%></p>
-	<p>DELIVERY PREFERENCES: <%=c.text_area :delivery_pref%></p>
-	<p>PHOTO: <%=c.text_field :photo%></p>
+	<%=form_for [current_collection_manager, @client] do |c|%>
+		<p>PHOTO: <%=c.file_field :photo%></p>
+		<p>NAME: <%=c.text_field :name%></p>
+		<p>ADDRESS: <%=c.text_area :address%></p>
+		<p>E-MAIL: <%=c.text_field :email%></p>
+		<p>ASSISTANT'S EMAIL: <%=c.text_field :email_assist%></p>
+		<p>BIRTHDAY: <%=c.text_field :birthday%></p>
+		<p>CELL PHONE: <%=c.text_field :cell_phone%></p>
+		<p>DELIVERY PREFERENCES: <%=c.text_area :delivery_pref%></p>
 
-<p><%=c.submit%></p>
+	<p><%=c.submit class: "btn btn-default btn-md"%></p>
 
 <%end%>

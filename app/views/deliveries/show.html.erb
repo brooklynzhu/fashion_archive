@@ -1,38 +1,61 @@
 <h1>Delivery #<%=@delivery.id%> on <%=@delivery.date.strftime("%m/%d/%Y") %> for <%=@client_name%></h1>
 
-<% if @delivery.completed? %>
-	<h2>Status: Completed!</h2>
-	<p> Date Completed: <%=@delivery.updated_at%></p>
-<% else %>
-	<h2>Status: Pending</h2>
-<% end %>
+	<% if @delivery.completed? %>
+		<h2>Status: Completed!</h2>
+		<p> Date Completed: <%=@delivery.updated_at%></p>
+	<% else %>
+		<h2>Status: Pending</h2>
+	<% end %>
  
 <div class="col-md-2">
-	<% if @delivery.completed != true %>
-	<p><%=link_to "Edit", edit_delivery_path(@delivery)%>
-	<p><%=link_to "Delete", @delivery, method: :delete, data: {confirm: "Are you sure?"} %> </p>
+	<p>Total Pieces in Delivery: <%=@delivery.piececount%></p>
+	<p>Pieces Associated with Delivery: <%=@delivery.pieces.count%></p>
 
-	<p><%=link_to "Check Out Pieces", delivery_check_out_pieces_path(@delivery, :client_id => @delivery.client.id)%></p>
+	<% if @delivery.completed != true %>
+		
+		<p><%=link_to "Edit Delivery Details", edit_delivery_path(@delivery)%>
+		
+		<p><%=link_to "Delete", @delivery, method: :delete, data: {confirm: "Are you sure?"} %> </p>
+
+		<p><%=link_to "+ Check Out Pieces", delivery_check_out_pieces_path(@delivery, :client_id => @delivery.client.id)%></p>
 	<%end%>
 	
 	<% if @delivery.completed != true %>	
 
-		<%=button_to "Complete Delivery", completed_client_deliveries_path(@delivery.client_id, :delivery_id => @delivery.id), method: "put", data: { confirm: "Are you sure?"} %>
+		<%=button_to "Complete Delivery",completed_client_deliveries_path(@delivery.client_id, :delivery_id => @delivery.id), method: "put", data: { confirm: "Are you sure?"} %>
 	<%else%>
+
 		<%=button_to "Unmark as Complete", completed_client_deliveries_path(@delivery.client_id, :delivery_id => @delivery.id), method: "put", data: { confirm: "Are you sure you want to unmark Delivery # #{@delivery.id} as complete?"}%>
 	<% end %>
 </div>
 
 <div class="col-md-10">
 
-<h3> Pieces in Delivery </h3>
+	<h3> Pieces in Delivery </h3>
 
-	<% @pieces.each do |show| %>
-		<ul class="all-pieces-grid">
-		<%= link_to image_tag(show.photo), show %>
-		<p><%= show.id %></p>
-		<p><%= show.designer %></p>
-		</ul>
+	<% if @delivery.completed != true %>
+
+		<%= form_tag delivery_remove_piece_path(@delivery.id), method: :put do %>
+
+			<% @pieces.each do |show| %>
+				<ul class="all-pieces-grid">
+				<%= link_to image_tag(show.photo), show %>
+				<%= check_box_tag "piece_ids[]", show.id %>
+				Piece #:<%= show.id %>
+				<p><%= show.designer %></p>
+				
+				</ul>
+			<%end%>
+			<br> <%= submit_tag "Remove Pieces from Delivery" %> </br>
+		<%end%>
+	<%else%>
+		<% @pieces.each do |show| %>
+				<ul class="all-pieces-grid">
+				<%= link_to image_tag(show.photo), show %>
+				<p><%= show.id %></p>
+				<p><%= show.designer %></p>
+				</ul>
+			<%end%>
 
 	<%end%>
 

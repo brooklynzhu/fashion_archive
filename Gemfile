@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
@@ -38,6 +38,8 @@ gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
 
 gem 'strftime', '~> 1.0'
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

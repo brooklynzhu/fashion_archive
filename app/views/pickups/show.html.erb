@@ -8,14 +8,18 @@
 <% end %>
  
 <div class="col-md-2">
+	<p>Pieces in Pickup: <%= @pickup.piececount %> </p>
+	<p>Associated Pieces: <%= @pickup.pieces.count %> </p>
 
-	<p><%=link_to "Edit Pickup", edit_pickup_path(@pickup)%>
+	<% if @pickup.completed != true %>
 
-	<p><%=link_to "+ Check In Pieces", pickup_check_in_pieces_path(@pickup, :client_id => @pickup.client.id)%></p>
+		<p><%=link_to "Edit Pickup Details", edit_pickup_path(@pickup)%>
 
-	<p><%=link_to "+ Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %> </p>
-	<p> Total Pieces in Pickup: <%= @pickup.piececount %> </p>
-	<p> Pieces Associated with Pickup: <%= @pickup.pieces.count %> </p>
+		<p><%=link_to "+ Check In Pieces", pickup_check_in_pieces_path(@pickup, :client_id => @pickup.client.id)%></p>
+
+		<p><%=link_to "+ Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %> </p>
+	<%end%>
+	
 	
 	<% if @pickup.completed != true %>	
 		<%=button_to "Complete Pickup", completed_client_pickups_path(@pickup.client_id, :pickup_id => @pickup.id), method: "put", data: { confirm: "Are you sure?"} %>
@@ -27,15 +31,20 @@
 
 <div class="col-md-10">
 
-	<h2>Pieces from Pickup </h2>
+	<h3>Pieces from Pickup </h3>
 
-	<%@pickup.pieces.each do |p|%>
-		<ul class="all-pieces-grid">
-		<%= link_to image_tag(p.photo), p %>
-		Item #:<%= p.id %>
-		Designer: <%= p.designer %>
-		Description: <%= p.description %>
-		</ul>
+	<%= form_tag pickup_remove_piece_path(@pickup.id), method: :put do %>
+
+		<%@pickup.pieces.each do |p|%>
+			<ul class="all-pieces-grid">
+			<%= link_to image_tag(p.photo), p %>
+			<%= check_box_tag "piece_ids[]", p.id %>
+			Item #:<%= p.id %>
+			<p>Designer: <%= p.designer %></p>
+			Description: <%= p.description %>
+			</ul>
+		<%end%>
+		<br> <%= submit_tag "Remove Pieces from Pickup" %> </br>
 	<%end%>
 
 </div>

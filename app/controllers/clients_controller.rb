@@ -3,7 +3,6 @@ class ClientsController < ApplicationController
 	def index
 		@collection_manager = current_collection_manager
 		@clients = Client.all
-		
 	end
 
 	def new

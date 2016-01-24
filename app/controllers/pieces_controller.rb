@@ -3,6 +3,11 @@ class PiecesController < ApplicationController
 	def index
 		@client = Client.find(params[:client_id])
 		@pieces = @client.pieces.all
+		if params[:search]
+			@pieces = Piece.search(params[:search])
+		else
+			@pieces
+		end
 
 	end
 
@@ -56,6 +61,7 @@ class PiecesController < ApplicationController
 		redirect_to client_pieces_path(@client)
 	end
 
+	
 
 	private
 

@@ -14,7 +14,7 @@
 	<p>LOCATION: <%=p.collection_select :location, Piece::LOCATIONS, :to_s, :humanize%></p>
 	<p>CONDITION: <%=p.collection_select :condition, Piece::CONDITIONS, :to_s, :humanize%></p>
 
-<p><%=p.submit%></p>
+<p><%=p.submit class: "btn btn-default btn-md" %></p>
 
 <%end%>
 

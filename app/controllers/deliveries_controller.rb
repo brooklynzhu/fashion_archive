@@ -28,7 +28,7 @@ class DeliveriesController < ApplicationController
 			flash[:notice] = "Delivery created!"
 			redirect_to delivery_path(@delivery)
 		else
-			flash[:notice] = "Error!"
+			flash[:alert] = "Error!"
 			render :new
 		end
 	end
@@ -73,13 +73,27 @@ class DeliveriesController < ApplicationController
 	def completed
 		@delivery = Delivery.find(params[:delivery_id])
 		if @delivery.completed != true
-			@delivery.update(completed: true)
-			redirect_to delivery_path(@delivery)
+			if @delivery.pieces.count != @delivery.piececount
+				flash[:alert] = "Pieces in delivery must equal number of associated pieces!"
+				redirect_to delivery_path(@delivery)	
+			else 
+				@delivery.update(completed: true)
+				flash[:notice] = "Delivery has been marked as complete!"
+				redirect_to delivery_path(@delivery)
+			end
 		else
 			@delivery.update(completed: false)
 			redirect_to delivery_path(@delivery)
 		end
 	end
+
+	def remove
+		@delivery = Delivery.find(params[:delivery_id])
+		@client = @delivery.client_id
+		Piece.where(id: params[:piece_ids]).update_all(location: "On Site", delivery_id: 'nil')
+		redirect_to delivery_path(@delivery)
+	end
+
 
 	private
 

@@ -1,6 +1,11 @@
 <h3>Pieces at Client: <%= @pieces_at_client %></h3>
-<p><%=link_to "+ New Pickup", new_client_pickup_path(@client)%></p>
-<p><%=link_to "+ New Delivery Request", new_client_delivery_path(@client)%></p>
-<p><%=link_to "View Profile", client_profile_path(@client)%></p>
-<p><%=link_to "View All Pieces", client_pieces_path(@client)%></p>
+
+	<p><%=link_to "+ New Pickup", new_client_pickup_path(@client)%></p>
+	<p><%=link_to "+ New Delivery Request", new_client_delivery_path(@client)%></p>
+	<p><%= link_to "View Profile", client_profile_path(@client) %></p>
+	<p><%= link_to "View All Pieces", client_pieces_path(@client) %></p>
+	<p><%= link_to "Pending Pickups", client_pickups_path(@client.id) %> </p>
+	<p><%= link_to "Pending Deliveries", client_deliveries_path(@client.id) %> </p>
+
+
 

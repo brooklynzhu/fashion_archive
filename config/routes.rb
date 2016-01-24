@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         end
           get 'check_out_pieces' => "deliveries#check_out"
           put 'complete_check_out' => "deliveries#complete_check_out"
+          put 'remove_piece' => 'deliveries#remove'
         end
       resources :pickups do
         collection do
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
         end
         get 'check_in_pieces' => "pickups#check_in"
         put 'complete_check_in' => "pickups#complete_check_in"
+        put 'remove_piece' => 'pickups#remove'
         resources :pieces
       end
     end

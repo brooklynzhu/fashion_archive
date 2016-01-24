@@ -1,11 +1,26 @@
 <h2>View All Clients</h2>
-<%=link_to "Add New Client", new_collection_manager_client_path(current_collection_manager)%>
-<ul>
-<p><%@clients.each do |view|%>
-	<li><%=link_to view.name, view%></p></li>
+<div class="col-md-2">
+	<%=link_to "Add New Client", new_collection_manager_client_path(current_collection_manager)%>
+</div>
 
-	<%end%>
-</ul>
+<div class="col-md-10">
+	<table class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Total Pieces</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%@clients.each do |view|%>
+				<tr>
+					<td><%=link_to view.name, view%></td>
+					<td><%=view.pieces.count%></td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div>
 
 
 

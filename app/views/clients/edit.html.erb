@@ -1,14 +1,14 @@
 <h1>Edit <%=@client.name%>'s Profile</h1>
 
 <%=form_for @client do |c|%>
-	<p>NAME: <%=c.text_field :name%></p>
-	<p>ADDRESS: <%=c.text_area :address%></p>
+	<p>PHOTO: <%= c.file_field :photo %></p>
+	<p>NAME: <%= c.text_field :name %></p>
+	<p>ADDRESS: <%= c.text_area :address %></p>
 	<p>E-MAIL: <%=c.text_field :email%></p>
 	<p>ASSISTANT'S EMAIL: <%=c.text_field :email_assist%></p>
 	<p>BIRTHDAY: <%=c.text_field :birthday%></p>
 	<p>CELL PHONE: <%=c.text_field :cell_phone%></p>
 	<p>DELIVERY PREFERENCES: <%=c.text_area :delivery_pref%></p>
-	<p>PHOTO: <%=c.text_field :photo%></p>
 
 <p><%=c.submit%></p>
 

@@ -2,6 +2,7 @@ class PickupsController < ApplicationController
 
 	def index
 		@pickups = Pickup.all
+		@client = Client.find(params[:client_id])
 
 	end
 
@@ -62,13 +63,27 @@ class PickupsController < ApplicationController
 
 	def completed
 		@pickup = Pickup.find(params[:pickup_id])
+
 		if @pickup.completed != true
-			@pickup.update(completed: true)
-			redirect_to pickup_path(@pickup)
+			if @pickup.pieces.count != @pickup.piececount
+				flash[:alert] = "Pieces in pickup must equal the number of associated pieces!"
+				redirect_to pickup_path(@pickup)
+			else
+				@pickup.update(completed: true)
+				flash[:notice] = "Pickup has been marked as complete!"
+				redirect_to pickup_path(@pickup)
+			end
 		else
 			@pickup.update(completed: false)
-			redirect_to pickup_path@pickup
+			redirect_to pickup_path(@pickup)
 		end
+	end
+
+	def remove
+		@pickup = Pickup.find(params[:pickup_id])
+		@client = @pickup.client_id
+		Piece.where(id: params[:piece_ids]).update_all(location: "On Site", pickup_id: 'nil')
+		redirect_to pickup_path(@pickup)
 	end
 
 
