@@ -1,0 +1,27 @@
+<h1> <%=@client.name%>'s Bags: </h1>
+
+<div class="col-md-2">
+	<%= render "pieces_menu" %>
+	
+
+</div>
+
+
+<div class="col-md-10">
+
+	<% if @bags.empty? %>
+		There currently no bags in <%=@client.name%>'s archive.
+	<%else%>
+
+	  	<%@bags.each do |show|%>
+			<ul class="all-pieces-grid">
+		  		<li><%= link_to image_tag(show.photo), show %>
+		  		Piece Number:<%=show.id%></br> <%=show.designer%> <br><%=show.location%></br>
+				</li>
+			</ul>  
+	  	<%end%>
+	<%end%>
+
+ </div>
+
+  <p><%=link_to "Return to Client", client_path(@client) %></p>

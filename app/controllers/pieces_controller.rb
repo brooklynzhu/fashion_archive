@@ -4,11 +4,10 @@ class PiecesController < ApplicationController
 		@client = Client.find(params[:client_id])
 		@pieces = @client.pieces.all
 		if params[:search]
-			@pieces = Piece.search(params[:search])
+			@pieces = @pieces.search(params[:search])
 		else
 			@pieces
 		end
-
 	end
 
 	def show
@@ -20,7 +19,6 @@ class PiecesController < ApplicationController
 		@client = Client.find(params[:client_id])
 		@piece = @client.pieces.new
 		@pickup_id = params[:pickup_id]
-
 	end
 
 	def create
@@ -38,8 +36,7 @@ class PiecesController < ApplicationController
 	end
 
 	def edit
-		@piece = Piece.find(params[:id])
-		
+		@piece = Piece.find(params[:id])		
 	end
 
 	def update
@@ -51,7 +48,6 @@ class PiecesController < ApplicationController
 		else
 			render edit_piece_path
 		end
-
 	end
 
 
@@ -59,6 +55,26 @@ class PiecesController < ApplicationController
 		@piece = Piece.find(params[:id]).destroy
 		@client = @piece.client
 		redirect_to client_pieces_path(@client)
+	end
+
+	def garments
+		@client = Client.find(params[:client_id])
+		@garments = @client.pieces.where(category: "Garments")
+	end
+
+	def bags
+		@client = Client.find(params[:client_id])
+		@bags = @client.pieces.where(category: "Bags")
+	end
+
+	def shoes
+		@client = Client.find(params[:client_id])
+		@shoes = @client.pieces.where(category: "Shoes")
+	end
+
+	def accessories
+		@client = Client.find(params[:client_id])
+		@accessories = @client.pieces.where(category: "Accessories")
 	end
 
 	

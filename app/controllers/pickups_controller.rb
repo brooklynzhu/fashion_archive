@@ -1,9 +1,9 @@
 class PickupsController < ApplicationController
 
 	def index
-		@pickups = Pickup.all
 		@client = Client.find(params[:client_id])
-
+		@pickups = @client.pickups
+		@pending_pickups = @pickups.where(completed: false)
 	end
 
 	def show

@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   resources :collection_managers, shallow: true do
     resources :clients do
         get 'profile' => "clients#profile"
-      resources :pieces
+      resources :pieces do
+        get 'garments', on: :collection
+        get 'bags', on: :collection
+        get 'shoes', on: :collection
+        get 'accessories', on: :collection
+      end
       resources :deliveries do
         collection do
             put :completed

@@ -1,11 +1,19 @@
 <h2><%=@client.name%>'s Archive</h2>
 
-<%= form_tag(client_pieces_path, :method => 'get', id: 'search-form') do %>
+<div class="col-md-2">
+	<%= render "pieces_menu" %>
+	
+
+</div>
+
+<%= form_tag(client_pieces_path(@client), :method => 'get', id: 'search-form') do %>
 	<p>
-	<%= text_field_tag :search, params[:search], placeholder: "Search Designer" %>
+	<%= text_field_tag :search, params[:search], placeholder: "Search Pieces" %>
 	<%= submit_tag "Search", :name => nil %>
 	</p>
 <%end%>
+
+<div class="col-md-10">
 
   <%@pieces.each do |show|%>
 	<ul class="all-pieces-grid">
@@ -15,4 +23,7 @@
 	</ul>
   
   <%end%>
+
+ </div>
+
 

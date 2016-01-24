@@ -3,7 +3,8 @@ class DeliveriesController < ApplicationController
 
 	def index
 		@client = Client.find(params[:client_id])
-		@deliveries = Delivery.all
+		@deliveries = @client.deliveries
+		@pending_deliveries = @deliveries.where(completed: false)
 
 	end
 

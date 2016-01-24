@@ -1,20 +1,26 @@
 class DashboardController < ApplicationController
 	
 	def index
+		@collection_manager = current_collection_manager
+		@clients = @collection_manager.clients
 		@pending_pickups = []
-		Pickup.all.each do |pickup|
-			if pickup.completed != true
-				@pending_pickups << pickup
+		@clients.each do |c|
+			c.pickups.each do |show|
+				if show.completed != true
+					@pending_pickups << show
+				end
+			end
+		end	
+	
+		@pending_deliveries = []
+		@clients.each do |d|
+			d.deliveries.each do |show|
+				if show.completed != true
+					@pending_deliveries << show
+				end
 			end
 		end
 
-		@pending_deliveries = []
-		Delivery.all.each do |delivery|
-			if delivery.completed != true
-				@pending_deliveries << delivery
-			end
-		end	
-			
 	end
 
 	def completed

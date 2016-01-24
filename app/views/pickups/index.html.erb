@@ -1,2 +1,39 @@
 <h1> Pending Pickups for <%=@client.name%> </h1>
 
+<div class="col-md-2">
+</div>
+
+<div class="col-md-10">
+
+	<h3>Pending Pickups</h3>
+
+	<% if @pending_pickups.empty? %>
+		<p>There are currently no pending pickups.</p>
+	<% else %>
+
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Pickup Number</th>
+					<th>Client</th>
+					<th>Number of Pieces</th>
+				</tr>
+			</thead>
+			<tbody>
+					
+				<%@pending_pickups.each do |p|%>
+					<tr>
+						<td><%=link_to p.date.strftime("%m/%d/%Y"), p%></td>
+						<td><%=p.id%></td>
+						<td><%=p.client.name%></td>
+						<td><%=p.piececount%></td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+	<%end%>
+
+<%=link_to "Return to Client Page", client_path(@client) %>
+</div>
+

@@ -43,9 +43,13 @@
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <%= form_tag collection_manager_clients_path(current_collection_manager), method: 'get', class: 'navbar-form' do %>
+              <div class = "input-group">
+                <%=text_field_tag :search, params[:search], placeholder: "Search Clients", class: "form-control"%>
+              </div>
+          <%end%>
+          <button type="submit" class="btn btn-default">Submit</button>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li><%=link_to "Clients", collection_manager_clients_path(current_collection_manager)%></li>

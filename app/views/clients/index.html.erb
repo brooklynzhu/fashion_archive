@@ -4,22 +4,27 @@
 </div>
 
 <div class="col-md-10">
-	<table class="table table-bordered table-striped">
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Total Pieces</th>
-			</tr>
-		</thead>
-		<tbody>
-			<%@clients.each do |view|%>
+
+	<%if @clients.empty? %>
+		<%= @collection_manager.name %> currently has no clients.
+	<%else%>
+		<table class="table table-bordered table-striped">
+			<thead>
 				<tr>
-					<td><%=link_to view.name, view%></td>
-					<td><%=view.pieces.count%></td>
+					<th>Name</th>
+					<th>Total Pieces</th>
 				</tr>
-			<%end%>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<%@clients.each do |view|%>
+					<tr>
+						<td><%=link_to view.name, view%></td>
+						<td><%=view.pieces.count%></td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+	<%end%>
 </div>
 
 
