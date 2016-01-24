@@ -3,7 +3,11 @@ class ClientsController < ApplicationController
 	def index
 		@collection_manager = current_collection_manager
 		@clients = @collection_manager.clients.all
-		
+		if params[:search]
+			@clients = @clients.search(params[:search])
+		else
+			@clients
+		end
 	end
 
 	def new

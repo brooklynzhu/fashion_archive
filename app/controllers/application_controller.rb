@@ -7,13 +7,6 @@ class ApplicationController < ActionController::Base
 
   before_action :authenticate_collection_manager!
 
-  if params[:search]
-      @current_collection_manager = current_collection_manager
-      @clients = @current_collection_manager.clients
-      @clients = @clients.search(params[:search])
-    else
-      @clients
-  end
 
  protected
 

@@ -4,7 +4,9 @@ class Client < ActiveRecord::Base
   has_many :deliveries
   has_many :pickups
 
-
+def self.search(search)
+  Client.where("name LIKE ?", "%#{search}%")
+end
  
 
   
