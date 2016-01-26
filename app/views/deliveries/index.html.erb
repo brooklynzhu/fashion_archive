@@ -1,4 +1,4 @@
-<h2>Deliveries for <%=@client.name%></h2>
+<h2>Pending Deliveries for <%=@client.name%></h2>
 
 <div class="col-md-2">
 	<p><%=link_to "+ New Delivery Request", new_client_delivery_path(@client)%></p>
@@ -8,13 +8,11 @@
 
 <div class="col-md-10">
 
-	<h3>Pending Deliveries</h3>
-
 		<% if @pending_deliveries.empty? %>
 			<p>There are currently no pending deliveries.</p>
 		<%else%>
 
-			<table class="table table-bordered table-striped">
+			<br><table class="table table-bordered table-striped">
 				<thead>
 					<tr>
 						<th>Date</th>
@@ -35,7 +33,7 @@
 					<%end%>
 						
 				</tbody>
-			</table>
+			</table></br>
 		<%end%>
 
 	<br><%=link_to "Return to Client Page", client_path(@client) %></br>

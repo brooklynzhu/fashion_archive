@@ -11,6 +11,7 @@
 	<p>Total Pieces in Delivery: <%=@delivery.piececount%></p>
 	<p>Pieces Associated with Delivery: <%=@delivery.pieces.count%></p>
 
+
 	<% if @delivery.completed != true %>
 		
 		<p><%=link_to "Edit Delivery Details", edit_delivery_path(@delivery)%>
@@ -19,13 +20,17 @@
 
 		<p><%=link_to "+ Check Out Pieces", delivery_check_out_pieces_path(@delivery, :client_id => @delivery.client.id)%></p>
 	<%end%>
+
+	<% if @delivery.notes.present? %>
+		<p> Notes: <%= @delivery.notes %> </p>
+	<%end%>
 	
 	<% if @delivery.completed != true %>	
 
-		<%=button_to "Complete Delivery",completed_client_deliveries_path(@delivery.client_id, :delivery_id => @delivery.id), method: "put", data: { confirm: "Are you sure?"} %>
+		<br><%=button_to "Complete Delivery",completed_client_deliveries_path(@delivery.client_id, :delivery_id => @delivery.id), method: "put", data: { confirm: "Are you sure?"} %> </br>
 	<%else%>
 
-		<%=button_to "Unmark as Complete", completed_client_deliveries_path(@delivery.client_id, :delivery_id => @delivery.id), method: "put", data: { confirm: "Are you sure you want to unmark Delivery # #{@delivery.id} as complete?"}%>
+		<br><%=button_to "Unmark as Complete", completed_client_deliveries_path(@delivery.client_id, :delivery_id => @delivery.id), method: "put", data: { confirm: "Are you sure you want to unmark Delivery # #{@delivery.id} as complete?"}%> </br>
 	<% end %>
 </div>
 
@@ -46,7 +51,9 @@
 				
 				</ul>
 			<%end%>
-			<br> <%= submit_tag "Remove Pieces from Delivery" %> </br>
+			<% if @delivery.pieces != [] %>
+				<br> <%= submit_tag "Remove Pieces from Delivery" %> </br>
+			<%end%>
 		<%end%>
 	<%else%>
 		<% @pieces.each do |show| %>
@@ -60,7 +67,13 @@
 	<%end%>
 
 
+<br><%=link_to "Return to Client Page", client_path(@delivery.client.id) %></br>
+
 </div>
+
+
+
+
 
 
 

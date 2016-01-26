@@ -20,14 +20,18 @@
 
 		<p><%=link_to "+ Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %> </p>
 
+	<%end%>
 
+
+	<% if @pickup.notes.present? %>
+		<p> Notes: <%= @pickup.notes %> </p>
 	<%end%>
 	
 	
 	<% if @pickup.completed != true %>	
-		<%=button_to "Complete Pickup", completed_client_pickups_path(@pickup.client_id, :pickup_id => @pickup.id), method: "put", data: { confirm: "Are you sure?"} %>
+		<br><%=button_to "Complete Pickup", completed_client_pickups_path(@pickup.client_id, :pickup_id => @pickup.id), method: "put", data: { confirm: "Are you sure?"} %></br>
 	<%else%>
-		<%=button_to "Unmark as Complete", completed_client_pickups_path(@pickup.client_id, :pickup_id => @pickup.id), method: "put", data: { confirm: "Are you sure you want to unmark Pickup # #{@pickup.id} as complete?"}%>
+		<br><%=button_to "Unmark as Complete", completed_client_pickups_path(@pickup.client_id, :pickup_id => @pickup.id), method: "put", data: { confirm: "Are you sure you want to unmark Pickup # #{@pickup.id} as complete?"}%></br>
 
 	<% end %>
 </div>
@@ -50,7 +54,7 @@
 
 		<% if @pickup.pieces != [] %>
 		<br> <%= submit_tag "Remove Pieces from Pickup" %> </br>
-	<%end%>
+		<%end%>
 	<%end%>
 
 	<br><%=link_to "Return to Client Page", client_path(@client_id) %></br>
