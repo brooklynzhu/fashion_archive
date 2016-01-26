@@ -21,6 +21,11 @@ class DashboardController < ApplicationController
 			end
 		end
 
+		@query = params[:search]
+ 		@search_results = Client.search_for(@query)
+ 		@client_results = @search_results.where(collection_manager_id: current_collection_manager)
+ 
+
 	end
 
 	def completed
