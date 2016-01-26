@@ -23,7 +23,7 @@ class ClientsController < ApplicationController
 			flash[:notice] = "New Client has been created!"
 			redirect_to collection_manager_clients_path(current_collection_manager)
 		else
-			flash[:notice] = "Error"
+			flash[:alert] = "Please complete form."
 			render :new
 		end
 
@@ -60,8 +60,11 @@ class ClientsController < ApplicationController
 	end
 
 	def profile
-
 		@client = Client.find(params[:client_id])
+		@pieces_on_site = @client.pieces.where(location: 'On Site')
+		@pieces_at_client = @client.pieces.where(location: 'At Client').count
+		@piece_count = @client.pieces.count
+		
 
 	end
 

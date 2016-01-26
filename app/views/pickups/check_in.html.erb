@@ -5,16 +5,23 @@
 
 <div class="col-md-10">
 	<h3>Pieces Currently At Client</h3>
-	<%= form_tag pickup_complete_check_in_path, method: :put do %>
-		<%@pieces.each do |p|%>
-			<ul class="all-pieces-grid">
-		
-				<%= link_to image_tag(p.photo), p %>
-				<%= check_box_tag "piece_ids[]", p.id %> Piece #: <%= p.id %>
-				<p><%= p.designer %></p>			
-			</ul>
+
+	<% if @pieces == [] %>
+		<br>There are currently no pieces to check in.</br>
+	<%else%>
+		<%= form_tag pickup_complete_check_in_path, method: :put do %>
+			<%@pieces.each do |p|%>
+				<ul class="all-pieces-grid">
+			
+					<%= link_to image_tag(p.photo), p %>
+					<%= check_box_tag "piece_ids[]", p.id %> Piece #: <%= p.id %>
+					<p><%= p.designer %></p>			
+				</ul>
+			<%end%>
+			
+			<p><%= submit_tag "Check In Pieces" %></p>
 		<%end%>
-		
-		<p><%= submit_tag "Check In Pieces" %></p>
 	<%end%>
+
+	<br><%=link_to "Return to Client Page", client_path(@client) %></br>
 </div>

@@ -14,10 +14,13 @@
 	<% if @pickup.completed != true %>
 
 		<p><%=link_to "Edit Pickup Details", edit_pickup_path(@pickup)%>
+		<p><%=link_to "Delete Pickup", @pickup, method: :delete, data: {confirm: "Are you sure?"} %> </p>
 
 		<p><%=link_to "+ Check In Pieces", pickup_check_in_pieces_path(@pickup, :client_id => @pickup.client.id)%></p>
 
 		<p><%=link_to "+ Create New Pieces", new_client_piece_path(@client_id, :pickup_id => @pickup.id) %> </p>
+
+
 	<%end%>
 	
 	
@@ -44,8 +47,13 @@
 			Description: <%= p.description %>
 			</ul>
 		<%end%>
+
+		<% if @pickup.pieces != [] %>
 		<br> <%= submit_tag "Remove Pieces from Pickup" %> </br>
 	<%end%>
+	<%end%>
+
+	<br><%=link_to "Return to Client Page", client_path(@client_id) %></br>
 
 </div>
 

@@ -1,12 +1,16 @@
-<h1> Delivery for <%=@client.name%></h1>
+<h1> New Delivery Request for <%=@client.name%></h1>
 
-<%= form_for [@client, @delivery] do |d|%>
-	<p>Date: <%= d.date_select :date %></p>
+<div class="col-md-10">
+	<%= form_for [@client, @delivery] do |d|%>
+		<p>Date: <%= d.date_select :date %></p>
 
-	<p>Piece Count: <%= d.text_field :piececount %>
-	<p>Notes: <%= d.text_area :notes %>
-	
+		<p>Piece Count: <%= d.text_field :piececount %>
+		<p>Notes: <%= d.text_area :notes %>
+		
 
-	<p><%= d.submit class: "btn btn-default btn-md"%></p>
+		<p><%= d.submit class: "btn btn-default btn-md"%></p>
 
-<%end%>
+	<%end%>
+
+<br><%=link_to "Return to Client Page", client_path(@client) %></br>
+</div>

@@ -1,16 +1,16 @@
 <h1> Pending Pickups for <%=@client.name%> </h1>
 
 <div class="col-md-2">
+	<p><%=link_to "+ New Pickup", new_client_pickup_path(@client)%></p>
+	<p><%=link_to "Completed Pickups", completed_pickups_client_pickups_path(@client) %> </p>
+
 </div>
 
 <div class="col-md-10">
 
-	<h3>Pending Pickups</h3>
-
 	<% if @pending_pickups.empty? %>
 		<p>There are currently no pending pickups.</p>
 	<% else %>
-
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
@@ -34,6 +34,6 @@
 		</table>
 	<%end%>
 
-<%=link_to "Return to Client Page", client_path(@client) %>
+<br><%=link_to "Return to Client Page", client_path(@client) %></br>
 </div>
 

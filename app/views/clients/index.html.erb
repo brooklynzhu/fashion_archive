@@ -1,12 +1,12 @@
-<h2>View All Clients</h2>
+<h2><%=@collection_manager.name%>'s Clients</h2>
 <div class="col-md-2">
-	<%=link_to "Add New Client", new_collection_manager_client_path(current_collection_manager)%>
+	<%=link_to "+ Add New Client", new_collection_manager_client_path(current_collection_manager)%>
 </div>
 
 <div class="col-md-10">
 
 	<%if @clients.empty? %>
-		<%= @collection_manager.name %> currently has no clients.
+		<br><%= @collection_manager.name %> currently has no clients.</br>
 	<%else%>
 		<table class="table table-bordered table-striped">
 			<thead>
@@ -25,6 +25,8 @@
 			</tbody>
 		</table>
 	<%end%>
+<br><%= link_to "Return to Dashboard", root_path %></br>
+
 </div>
 
 

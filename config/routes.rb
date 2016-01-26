@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         get 'accessories', on: :collection
       end
       resources :deliveries do
+        get 'completed_deliveries', on: :collection
         collection do
             put :completed
         end
@@ -29,6 +30,7 @@ Rails.application.routes.draw do
           put 'remove_piece' => 'deliveries#remove'
         end
       resources :pickups do
+        get 'completed_pickups', on: :collection
         collection do
             put :completed
         end

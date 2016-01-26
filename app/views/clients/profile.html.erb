@@ -1,13 +1,25 @@
+<div class="col-md-2">
+
+	<%= render "client_menu" %>
+
+</div>
+
+<div class="col-md-10">
+
 <h1><%=@client.name%>'s Profile</h1>
 
-<p><img src = <%=@client.photo%> height=300></p>
-<p><%=link_to "Edit Profile", edit_client_path(@client)%></p>
+	<p><img src = <%=@client.photo%> height=300></p>
+	<p><%=link_to "Edit Profile", edit_client_path(@client)%></p>
 
-<p>ADDRESS: <%=@client.address%></p>
-<p>E-MAIL: <%=@client.email%></p>
-<p>PHONE: <%=@client.cell_phone%></p>
-<p>BIRTHDAY: <%=@client.birthday%></p>
-<p>DELIVERY PREFERENCES: <%=@client.delivery_pref%></p>
+	<p>ADDRESS: <%=@client.address%></p>
+	<p>E-MAIL: <%=@client.email%></p>
+	<p>PHONE: <%=@client.cell_phone%></p>
+	<p>BIRTHDAY: <%=@client.birthday%></p>
+	<p>DELIVERY PREFERENCES: <%=@client.delivery_pref%></p>
+
+	<br><%=link_to "Return to Client Page", client_path(@client) %></br>
+
+</div>
 
 
 

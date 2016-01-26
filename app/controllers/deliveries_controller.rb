@@ -2,9 +2,10 @@ class DeliveriesController < ApplicationController
 
 
 	def index
-		@client = Client.find(params[:client_id])
+		@collection_manager = current_collection_manager
+		@client = @collection_manager.clients.find(params[:client_id])
 		@deliveries = @client.deliveries
-		@pending_deliveries = @deliveries.where(completed: false)
+		@pending_deliveries = @deliveries.where(completed: nil)
 
 	end
 
@@ -29,7 +30,7 @@ class DeliveriesController < ApplicationController
 			flash[:notice] = "Delivery created!"
 			redirect_to delivery_path(@delivery)
 		else
-			flash[:alert] = "Error!"
+			flash[:alert] = "Please complete delivery form!"
 			render :new
 		end
 	end
@@ -86,6 +87,11 @@ class DeliveriesController < ApplicationController
 			@delivery.update(completed: false)
 			redirect_to delivery_path(@delivery)
 		end
+	end
+
+	def completed_deliveries
+		@client = Client.find(params[:client_id])
+		@deliveries = @client.deliveries.where(completed: true)
 	end
 
 	def remove

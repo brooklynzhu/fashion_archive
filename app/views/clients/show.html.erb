@@ -7,9 +7,12 @@
 
 <div class="col-md-10">
 <h1> <%=@client.name%></h1>
-<p>Total Piece Count: <%= @piece_count %></p>
+<p><%= link_to "View Profile", client_profile_path(@client) %></p>
 
 <h3> Pieces On Site </h3>
+	<%if @pieces_on_site.empty? %>
+	<br>There are currently no pieces in <%=@client.name%>'s archive.</br>
+	<%end%>
     <%@pieces_on_site.each do |show|%>
     <ul class="all-pieces-grid">
       <li><%= link_to image_tag(show.photo), show %>
@@ -17,4 +20,7 @@
       <%=show.id%></li>
     </ul>
   <%end%>
+
+
+  
 </div>

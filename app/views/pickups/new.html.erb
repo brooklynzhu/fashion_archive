@@ -1,12 +1,17 @@
-<h1> Create Pickup </h1>
+<h1> Create New Pickup for <%=@client.name %></h1>
 
-<%= form_for [@client, @pickup] do |p|%>
-	<p>Date: <%= p.date_select :date %></p>
+<div class="col-md-10">
 
-	<p>Piece Count: <%= p.text_field :piececount %>
-	<p>Notes: <%= p.text_area :notes %>
-	
+	<%= form_for [@client, @pickup] do |p|%>
+		<p>Date: <%= p.date_select :date %></p>
 
-	<p><%= p.submit class: "btn btn-default btn-md"%></p>
+		<p>Piece Count: <%= p.text_field :piececount %>
+		<p>Notes: <%= p.text_area :notes %>
+		
 
-<%end%>
+		<p><%= p.submit class: "btn btn-default btn-md"%></p>
+
+	<%end%>
+
+<br><%=link_to "Return to Client Page", client_path(@client) %></br>
+</div>

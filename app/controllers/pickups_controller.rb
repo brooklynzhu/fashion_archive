@@ -1,9 +1,11 @@
 class PickupsController < ApplicationController
 
 	def index
-		@client = Client.find(params[:client_id])
+		@collection_manager = current_collection_manager
+		@client = @collection_manager.clients.find(params[:client_id])
 		@pickups = @client.pickups
 		@pending_pickups = @pickups.where(completed: false)
+
 	end
 
 	def show
@@ -27,7 +29,7 @@ class PickupsController < ApplicationController
 			flash[:notice] = "Pickup created!"
 			redirect_to pickup_path(@pickup)
 		else
-			flash[:notice] = "Error!"
+			flash[:alert] = "Please complete pickup form!"
 			render :new
 		end
 	end
@@ -79,11 +81,22 @@ class PickupsController < ApplicationController
 		end
 	end
 
+	def completed_pickups
+		@client = Client.find(params[:client_id])
+		@pickups = @client.pickups.where(completed: true)
+	end
+
 	def remove
 		@pickup = Pickup.find(params[:pickup_id])
 		@client = @pickup.client_id
 		Piece.where(id: params[:piece_ids]).update_all(location: "On Site", pickup_id: 'nil')
 		redirect_to pickup_path(@pickup)
+	end
+
+	def destroy
+		@pickup = Pickup.find(params[:id]).destroy
+		@client = @pickup.client
+		redirect_to client_path(@client)
 	end
 
 

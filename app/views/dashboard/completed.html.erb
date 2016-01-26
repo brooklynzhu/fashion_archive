@@ -4,18 +4,60 @@
 
 <h2> Completed Pickups </h2>
 
-	<ul><% @pickups.each do |p| %>
-		<ul><li><%=link_to p.date.strftime("%m/%d/%Y"), p%> | <%=p.client.name%> | Pick Up # <%=p.id%> | Piece Count: <%=p.piececount%></li></ul>
+	<% if @completed_pickups.empty? %>
+		<p>All pickups are currently pending.</p>
+	<% else %>
+
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Pickup Number</th>
+					<th>Client</th>
+					<th>Number of Pieces</th>
+				</tr>
+			</thead>
+			<tbody>
+					
+				<%@completed_pickups.each do |p|%>
+					<tr>
+						<td><%=link_to p.date.strftime("%m/%d/%Y"), p%></td>
+						<td><%=p.id%></td>
+						<td><%=p.client.name%></td>
+						<td><%=p.piececount%></td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
 	<%end%>
-	</ul>
 
 <h2> Completed Deliveries </h2>
+	<% if @completed_deliveries.empty? %>
+			<p>All deliveries are pending.</p>
+	<%else%>
+		<table class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Delivery Number</th>
+					<th>Client</th>
+					<th>Number of Pieces</th>
+				</tr>
+			</thead>
+			<tbody>	
+				<%@completed_deliveries.each do |d|%>
+					<tr>
+						<td><%= link_to d.date.strftime("%m/%d/%Y"), d %></td>
+						<td><%= d.id%></td>
+						<td><%= d.client.name%></td>
+						<td><%= d.piececount%></td>
+					</tr>
+				<%end%>	
+			</tbody>
+		</table>
+	<%end%>
 
-	<ul><% @deliveries.each do |show| %>
-			<ul><li><%=link_to show.date.strftime("%m/%d/%Y"), show %> | <%=show.client.name%> | Delivery # <%=show.id%> | Piece Count: <%=show.piececount%></li></ul>
-		<%end%>
-	</ul>
-
+<br><%= link_to "Return to Dashboard", root_path %>
 
 
 </div>

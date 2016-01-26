@@ -6,7 +6,9 @@
 </div>
 
 <div class="col-md-6">
-	<img src=<%=@piece.photo%> height = 300>
+	<br><img src=<%=@piece.photo%> height = 600></br>
+
+<br><%=link_to "Return to Client Page", client_path(@piece.client) %></br>
 
 </div>
 
@@ -21,9 +23,17 @@
 	<p> Material: <%=@piece.material%></p>
 	<p> Condition: <%=@piece.condition%></p>
 	<p> Location: <%=@piece.location%></p>
-	<p> Pickup: <%=@piece.pickup_id%></p>
+	<% if @piece.pickup != nil %>
+		<p> Pickup: <%=@piece.pickup_id%></p>
+	<%end%>
+	<% if @piece.delivery != nil %>
+		<p> Delivery: <%=@piece.delivery_id%></p>
+	<%end%>
 
 	<p><%=link_to "Edit", edit_piece_path(@piece)%> | <%= link_to "Delete", @piece, method: :delete, data:{confirm: "Are you sure?"} %></p>
+
+
+
 </div>
 
 

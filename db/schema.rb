@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160124200632) do
+ActiveRecord::Schema.define(version: 20160125123447) do
 
   create_table "admin_users", force: :cascade do |t|
     t.string   "name"
@@ -87,10 +87,10 @@ ActiveRecord::Schema.define(version: 20160124200632) do
     t.datetime "date"
     t.string   "notes"
     t.integer  "client_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "piececount"
-    t.boolean  "completed"
+    t.boolean  "completed",  default: false
   end
 
   add_index "pickups", ["client_id"], name: "index_pickups_on_client_id"

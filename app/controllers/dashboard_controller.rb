@@ -24,8 +24,25 @@ class DashboardController < ApplicationController
 	end
 
 	def completed
-		@pickups = Pickup.where(completed: true)
-		@deliveries = Delivery.where(completed: true)
+		@collection_manager = current_collection_manager
+		@clients = @collection_manager.clients
+		@completed_pickups = []
+		@clients.each do |c|
+			c.pickups.each do |show|
+				if show.completed == true
+					@completed_pickups << show
+				end
+			end
+		end
+
+		@completed_deliveries = []
+		@clients.each do |d|
+			d.deliveries.each do |show|
+				if show.completed == true
+					@completed_pickups << show
+				end
+			end
+		end
 	end
 
 end
