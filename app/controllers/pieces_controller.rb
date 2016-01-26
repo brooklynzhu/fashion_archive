@@ -31,7 +31,7 @@ class PiecesController < ApplicationController
 			flash[:notice] = "Piece has been added to #{@client.name}'s closet!"
 			redirect_to pickup_path(@pickup)
 		else
-			flash[:notice] = "Error"
+			flash[:alert] = "Please complete all fields."
 			render :new
 		end
 	end
