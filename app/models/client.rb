@@ -17,7 +17,8 @@ has_attached_file :photo,
           :bucket => :fashionarchive
 
   # Validate the attached image is image/jpg, image/png, etc
-  validates_attachment_content_type :photo, :content_type => /\Aimage
+  validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+ 
   
 
  
