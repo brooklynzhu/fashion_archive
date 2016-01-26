@@ -49,7 +49,8 @@ class PickupsController < ApplicationController
 		end
 	end
 
-	def check_in	
+	def check_in
+		@pickup = Pickup.find(params[:pickup_id])	
 		@client = Client.find(params[:client_id])
 		@pieces = @client.pieces.where(location: 'At Client')
 		
