@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-	
+
 	def index
 		@collection_manager = current_collection_manager
 		@clients = @collection_manager.clients
@@ -10,8 +10,8 @@ class DashboardController < ApplicationController
 					@pending_pickups << show
 				end
 			end
-		end	
-	
+		end
+
 		@pending_deliveries = []
 		@clients.each do |d|
 			d.deliveries.each do |show|
@@ -20,6 +20,10 @@ class DashboardController < ApplicationController
 				end
 			end
 		end
+
+		@query = params[:search]
+		@search_results = Client.search_for(@query)
+		@client_results = @search_results.where(collection_manager_id: current_collection_manager)
 
 	end
 

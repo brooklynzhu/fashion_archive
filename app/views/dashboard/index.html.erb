@@ -19,7 +19,7 @@
 					<th>Number of Pieces</th>
 				</tr>
 			</thead>
-			<tbody>		
+			<tbody>
 				<%@pending_pickups.each do |p|%>
 					<tr>
 						<td><%=link_to p.date.strftime("%m/%d/%Y"), p%></td>
@@ -28,7 +28,7 @@
 						<td><%=p.piececount%></td>
 					</tr>
 				<%end%>
-	
+
 			</tbody>
 		</table>
 	<%end%>
@@ -48,7 +48,7 @@
 				</tr>
 			</thead>
 			<tbody>
-					
+
 				<%@pending_deliveries.each do |d|%>
 				<tr>
 					<td><%= link_to d.date.strftime("%m/%d/%Y"), d %></td>
@@ -61,7 +61,20 @@
 		</table>
 	<%end%>
 
-<br><%=link_to "Completed", completed_path%></br
+<br><%=link_to "Completed", completed_path%></br>
+
+<% if @query %>
+	<% if @client_results.any? %>
+		<h3>Client Search Results</h3>
+				<ul>
+	        <% @client_results.each do |client| %>
+	            <li><%=link_to client.name, client %></li>
+	        <% end %>
+	      </ul>
+	<% else %>
+		<h3>No search results</h3>
+	<% end %>
+<% end %>
 
 </div>
 

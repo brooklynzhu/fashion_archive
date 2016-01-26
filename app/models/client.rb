@@ -5,7 +5,9 @@ class Client < ActiveRecord::Base
   has_many :pickups
 
 
- 
+  def self.search_for(search)
+      where("name LIKE ?", "%#{search}%")
+  end
 
-  
+
 end
