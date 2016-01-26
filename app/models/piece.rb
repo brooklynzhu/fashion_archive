@@ -5,9 +5,6 @@ class Piece < ActiveRecord::Base
 
   def self.search(search)
     Piece.where("designer ILIKE ? OR id ILIKE ? OR description ILIKE ? OR category ILIKE ? OR location ILIKE ? OR size ILIKE ? OR color ILIKE ? OR material ILIKE ? OR condition ILIKE ?", "%#{search}%","%#{search}%","%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
-  else
-    all
-  end
   end
 
   
