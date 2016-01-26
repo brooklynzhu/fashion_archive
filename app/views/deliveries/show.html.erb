@@ -36,7 +36,7 @@
 
 <div class="col-md-10">
 
-	<h3> Pieces in Delivery </h3>
+	<h3> <u> Pieces in Delivery </u> </h3>
 
 	<% if @delivery.completed != true %>
 
@@ -44,11 +44,10 @@
 
 			<% @pieces.each do |show| %>
 				<ul class="all-pieces-grid">
-				<%= link_to image_tag(show.photo), show %>
-				<%= check_box_tag "piece_ids[]", show.id %>
-				Piece #:<%= show.id %>
-				<p><%= show.designer %></p>
-				
+					<center><%= link_to image_tag(show.photo), show %>
+					<%= check_box_tag "piece_ids[]", show.id %>
+					Piece #:<%= show.id %>
+					<p>Designer: <%= show.designer %></p></center>
 				</ul>
 			<%end%>
 			<% if @delivery.pieces != [] %>
@@ -57,12 +56,12 @@
 		<%end%>
 	<%else%>
 		<% @pieces.each do |show| %>
-				<ul class="all-pieces-grid">
+			<ul class="all-pieces-grid">
 				<%= link_to image_tag(show.photo), show %>
-				<p><%= show.id %></p>
-				<p><%= show.designer %></p>
-				</ul>
-			<%end%>
+				<center><p>Piece #: <%= show.id %></p>
+				<p>Designer: <%= show.designer %></p></center>
+			</ul>
+		<%end%>
 
 	<%end%>
 

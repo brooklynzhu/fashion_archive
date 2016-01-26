@@ -38,17 +38,17 @@
 
 <div class="col-md-10">
 
-	<h3>Pieces from Pickup </h3>
+	<h3> <u> Pieces from Pickup </u> </h3>
 
 	<%= form_tag pickup_remove_piece_path(@pickup.id), method: :put do %>
 
 		<%@pickup.pieces.each do |p|%>
 			<ul class="all-pieces-grid">
-			<%= link_to image_tag(p.photo), p %>
-			<%= check_box_tag "piece_ids[]", p.id %>
-			Item #:<%= p.id %>
-			<p>Designer: <%= p.designer %></p>
-			Description: <%= p.description %>
+				<%= link_to image_tag(p.photo), p %>
+				<center> <%= check_box_tag "piece_ids[]", p.id %>
+				Piece #:<%= p.id %>
+				<p>Designer: <%= p.designer %></p>
+				Description: <%= p.description %></center>
 			</ul>
 		<%end%>
 

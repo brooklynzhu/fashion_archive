@@ -1,5 +1,3 @@
-<h1><%=link_to @piece.client.name, client_path(@piece.client_id)%></h1>
-
 <div class="col-md-2">
 	
 
@@ -13,7 +11,8 @@
 </div>
 
 <div class="col-md-4">
-<p> Piece Number: <%=@piece.id%></p>
+<h1><%=link_to @piece.client.name, client_path(@piece.client_id)%></h1>
+	<p> Piece Number: <%=@piece.id%></p>
 	<p> Designer: <%=@piece.designer%></p>
 	<p> Description: <%=@piece.description%></p>
 	<p> Category: <%=@piece.category%></p>
