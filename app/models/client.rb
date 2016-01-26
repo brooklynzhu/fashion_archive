@@ -5,7 +5,7 @@ class Client < ActiveRecord::Base
   has_many :pickups
 
 def self.search(search)
-  Client.where("name LIKE ?", "%#{search}%")
+  Client.where("name ILIKE ?", "%#{search}%")
 end
 
 has_attached_file :photo, 
