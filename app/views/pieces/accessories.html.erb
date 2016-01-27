@@ -9,7 +9,7 @@
 
 <div class="col-md-10">
 
-	<% if @accessories.empty? %>
+	<% if @accessories.blank? %>
 		There currently no accessories in <%=@client.name%>'s archive.
 	<%else%>
 	  	<%@accessories.each do |show|%>

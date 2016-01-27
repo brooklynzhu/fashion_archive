@@ -6,7 +6,7 @@
 <div class="col-md-10">
 
 	<h3>Pending Pickups</h3>
-	<% if @pending_pickups.empty? %>
+	<% if @pending_pickups.blank? %>
 		<p>There are currently no pending pickups.</p>
 	<% else %>
 
@@ -34,7 +34,7 @@
 	<%end%>
 
 	<h3>Pending Deliveries</h3>
-	<% if @pending_deliveries.empty? %>
+	<% if @pending_deliveries.blank? %>
 		<p>There are currently no pending deliveries.</p>
 	<%else%>
 
