@@ -4,7 +4,7 @@
 
 <h2> Completed Pickups </h2>
 
-	<% if @completed_pickups.empty? %>
+	<% if @completed_pickups.blank? %>
 		<p>All pickups are currently pending.</p>
 	<% else %>
 
@@ -32,7 +32,7 @@
 	<%end%>
 
 <h2> Completed Deliveries </h2>
-	<% if @completed_deliveries.empty? %>
+	<% if @completed_deliveries.blank? %>
 			<p>All deliveries are currently pending.</p>
 	<%else%>
 		<table class="table table-bordered table-striped">
