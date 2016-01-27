@@ -4,7 +4,7 @@ class Piece < ActiveRecord::Base
   belongs_to :delivery
 
   def self.search(search)
-    Piece.where("designer LIKE ? OR id LIKE ? OR description LIKE ? OR category LIKE ? OR location LIKE ? OR size LIKE ? OR color LIKE ? OR material LIKE ? OR condition LIKE ?", "%#{search}%","%#{search}%","%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
+    Piece.where("designer LIKE ? OR description LIKE ? OR category LIKE ? OR location LIKE ? OR color LIKE ? OR material LIKE ? OR condition LIKE ?", "%#{search}%","%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
   end
 
   
