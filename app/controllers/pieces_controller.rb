@@ -25,7 +25,6 @@ class PiecesController < ApplicationController
 
 		@client = Client.find(params[:client_id])
 		@piece = @client.pieces.create(safe_piece_params)
-		@pickup = @piece.pickups.id
 
 		if @piece.save
 			flash[:notice] = "Piece has been added to #{@client.name}'s closet!"
